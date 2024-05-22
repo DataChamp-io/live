@@ -11,23 +11,26 @@ r = annual interest rate
 """
 
 downPayment = d = float(input("How much will your downpayment be?: "))
-price = p = float(input("What is the price of the home?: "))
+startingPrice = float(input("What is the price of the home?: "))
 time = t = float(input("How many years is your mortgage?: "))
 interestRate = r = float(input("What is the interest rate?: "))
 n = 12
+p = (startingPrice - d)
+ratePercent = rp = r / 100
 
-def calculator():
-   print = d, p, t, r
-
-print(calculator())
+#print(calculator())
 
 def monthlyPayment():
-  m = ((p - d) * ( r / n )) / ( 1 - ( 1 + r / n ) **( -n * t))
-  return ("{:,}".format(round(m, 2)))
-    
-mortgagePayment = monthlyPayment()
+  m = ((p * (rp / n)) / (1 - ( 1 + (rp / n )) **(-n * t)))
+  return m
+     # return ("{:,}".format(round(m, 2)))
 
-if p and t and r:
-    print("Your monthly payment is: $" + str(mortgagePayment))
+mortgagePayment = monthlyPayment()
+formattedMortgagePayment = "{:,}".format(round(mortgagePayment, 2))
+#formattedMortgagePayment = "{:,}".format(round(mortgagePayment(), 2))
+
+
+if startingPrice and t and r:
+    print("Your monthly payment is: $" + str(formattedMortgagePayment))
 else:
     print("Please enter a valid number")
